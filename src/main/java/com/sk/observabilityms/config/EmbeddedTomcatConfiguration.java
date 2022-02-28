@@ -7,11 +7,13 @@ import java.util.stream.Stream;
 import org.apache.catalina.connector.Connector;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@ConditionalOnProperty(prefix = "server", name = "additionalPorts")
 public class EmbeddedTomcatConfiguration {
 
 	@Value("${server.additionalPorts:}")
