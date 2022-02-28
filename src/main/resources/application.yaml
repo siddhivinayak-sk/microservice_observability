@@ -1,0 +1,48 @@
+springdoc:
+  use-fqn: true
+
+spring:
+  application:
+    name: ObservabilityMS
+  profiles:
+    active:
+     - default
+     
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:~/test1
+  jpa:
+    hibernate:
+       ddl-auto: create
+
+server:
+  port: 80
+  servlet:
+   context-path: ''
+
+management:
+  metrics:
+    export:
+      influx:
+        enabled: false
+        step: PT2S
+        readTimeout: PT10S
+        batchSize: 20000
+        org: "skt"
+        db: "skt"
+        uri: "http://127.0.0.1:8086"
+        bucket: "skt"
+        token: "i359Ca9H2x3axnFsMaiN400X6VyMmDZkg6cdEzABZOfqO25NgH7DUuk2zOT5EU4xr11QBXNuUp94RobSD24uVA=="
+        
+        
+        
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+  
