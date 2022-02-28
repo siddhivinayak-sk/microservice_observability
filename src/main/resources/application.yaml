@@ -21,6 +21,8 @@ spring:
 
 server:
   port: 80
+  host: localhost
+  protocol: http
   servlet:
    context-path: ''
 

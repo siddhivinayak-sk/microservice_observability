@@ -9,23 +9,35 @@ import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
+import io.swagger.v3.oas.models.servers.Server;
 
 @Configuration
 public class OpenAPIConfiguration {
 	
-	@Value("${applicaiton.domain.url:localhost}")
-	private String domain;
+	@Value("${server.port:80}")
+	private String port;
+
+	@Value("${server.host:localhost}")
+	private String host;
+
+	@Value("${server.ssl == https:false}")
+	private boolean ssl;
 
 	@Bean
 	public OpenAPI springShopOpenAPI() {
+		StringBuilder hostUrl = new StringBuilder();
+		hostUrl.append((ssl)?"https://":"http://").append(host).append(":").append(port);
 	    return new OpenAPI()
 	            .info(new Info().title("SpringBoot Observability")
 	            .description("SpringBoot Observability sample application")
 	            .version("v0.0.1")
 	            .license(new License().name("Apache 2.0").url("https://github.com/siddhivinayak-sk")))
 	            .externalDocs(new ExternalDocumentation()
-	            .description("SpringBoot Observability Wiki Documentation")
-	            .url("https://github.com/siddhivinayak-sk"));
+	              .description("SpringBoot Observability Wiki Documentation")
+	              .url("https://github.com/siddhivinayak-sk"))
+	            .addServersItem(new Server()
+	            		.url(hostUrl.toString())
+	            		.description("Server one"));
 	}	
 	
 	
