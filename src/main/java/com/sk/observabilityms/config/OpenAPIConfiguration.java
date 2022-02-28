@@ -20,13 +20,18 @@ public class OpenAPIConfiguration {
 	@Value("${server.host:localhost}")
 	private String host;
 
-	@Value("${server.ssl == https:false}")
-	private boolean ssl;
+	@Value("${server.protocol:http}")
+	private String protocol;
 
 	@Bean
 	public OpenAPI springShopOpenAPI() {
 		StringBuilder hostUrl = new StringBuilder();
-		hostUrl.append((ssl)?"https://":"http://").append(host).append(":").append(port);
+		hostUrl
+		.append(protocol)
+		.append("://")
+		.append(host)
+		.append(":")
+		.append(port);
 	    return new OpenAPI()
 	            .info(new Info().title("SpringBoot Observability")
 	            .description("SpringBoot Observability sample application")
