@@ -7,7 +7,9 @@ spring:
   profiles:
     active:
      - default
-     
+  main:
+    allow-bean-definition-overriding: true
+         
   h2:
     console:
       enabled: true
@@ -17,7 +19,16 @@ spring:
     hibernate:
        ddl-auto: create
   zipkin:
+    enabled: false
     base-url: http://localhost:9411/
+    
+  json:
+    value:
+      default:
+        type: com.sk.observabilityms.model.KafkaMessage
+    use:
+      type:
+        headers: true
 
 server:
   port: 80
@@ -50,4 +61,24 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
-  
+
+kafka:
+  enabled: false
+  topics:
+   - name: topic1
+     host: localhost
+     port: 9092
+     producers:
+      - name: producer1
+     consumers:
+      - name: consumer1
+        group: consumergroup1
+
+
+kafkaauto:
+  enabled: true
+  streamed: true
+  topics:
+   - name: topic2
+     host: localhost
+     port: 9092

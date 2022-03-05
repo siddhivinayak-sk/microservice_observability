@@ -34,6 +34,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<!--
+		There is issue with Sleuth with Kafka compatability
+		so to get the KafkaStream work properly remove these
+		disable Sleuth. 
+		-->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-sleuth-zipkin</artifactId>
@@ -42,6 +47,7 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-sleuth</artifactId>
 		</dependency>
+		<!-- -->
 
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -81,17 +87,26 @@
 		    <artifactId>springdoc-openapi-ui</artifactId>
 		    <version>1.6.6</version>
 		</dependency>		
-		<!--
+		<!--  -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-log4j2</artifactId>
 		</dependency>
-		-->
+		<!-- -->
 		<dependency>
 		    <groupId>org.hibernate.validator</groupId>
 		    <artifactId>hibernate-validator</artifactId>
 		</dependency>
+		<dependency>
+		    <groupId>org.springframework.kafka</groupId>
+		    <artifactId>spring-kafka</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.kafka</groupId>
+		    <artifactId>kafka-streams</artifactId>
+		</dependency> 		
 	</dependencies>
+	
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
