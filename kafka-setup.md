@@ -19,12 +19,13 @@ Note: Based on OS, Kafka provides sh/bat file in bin directory.
    ```
    where server.properties file is available in /config directory of kafka home directory
    once zookeeper started, proceed for next step
-5. Need to start Kafdrop - A user interface for Kafka broker, run below command
+5. Download kafdrop from URL: https://github.com/obsidiandynamics/kafdrop
+6. Need to start Kafdrop - A user interface for Kafka broker, run below command
    ```
      java -Djdk.io.File.enableADS=true --add-opens=java.base/sun.nio.ch=ALL-UNNAMED -jar kafdrop-3.30.0.jar --kafka.brokerConnect=localhost:9092
    ```
-6. By default, Kafka broker will start on 9092 port and kafdrop on 9000 port.
-7. Need to start kafdrop in browser by using URL: http://localhost:9000/ it will open kafdrop
+7. By default, Kafka broker will start on 9092 port and kafdrop on 9000 port.
+8. Need to start kafdrop in browser by using URL: http://localhost:9000/ it will open kafdrop
 
 ## Bat file to start Kafka stack
 Create a file named 'start-kafka.bat' with below content:
