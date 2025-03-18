@@ -39,9 +39,9 @@ server:
    context-path: ''
 
 management:
-  metrics:
-    export:
-      influx:
+  influx:
+    metrics:
+      export:
         enabled: false
         step: PT2S
         readTimeout: PT10S
@@ -51,9 +51,7 @@ management:
         uri: "http://127.0.0.1:8086"
         bucket: "skt"
         token: "i359Ca9H2x3axnFsMaiN400X6VyMmDZkg6cdEzABZOfqO25NgH7DUuk2zOT5EU4xr11QBXNuUp94RobSD24uVA=="
-        
-        
-        
+
   endpoints:
     web:
       exposure:
@@ -82,3 +80,8 @@ kafkaauto:
    - name: topic2
      host: localhost
      port: 9092
+
+otlp:
+  metrics:
+    export:
+      enabled: true

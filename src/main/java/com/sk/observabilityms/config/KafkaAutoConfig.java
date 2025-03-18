@@ -108,7 +108,7 @@ public class KafkaAutoConfig {
     }	
 	
     @KafkaListener(topics = "topic2", groupId = "group1")
-	public void listenWithHeadersTopic2(@Payload KafkaMessage message, @Header(KafkaHeaders.RECEIVED_PARTITION_ID) int partition) {
+	public void listenWithHeadersTopic2(@Payload KafkaMessage message, @Header(KafkaHeaders.RECEIVED_PARTITION) int partition) {
 		System.out.println("T2 Received Message: " + message + " Partition: " + partition);
 	}
 	

@@ -4,14 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
-import org.springframework.util.concurrent.ListenableFuture;
-import org.springframework.util.concurrent.ListenableFutureCallback;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sk.observabilityms.model.KafkaMessage;
+
+import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping("/kafkaauto")
@@ -26,21 +26,14 @@ public class KafkaAutoController {
 		KafkaMessage kMessage = new KafkaMessage();
 		kMessage.setMessage(message);
 		kMessage.setMessageCode("200");
-		
-		ListenableFuture<SendResult<String, KafkaMessage>> listenableFuture =  kafkaTemplate.send("topic2", "data", kMessage);
-		listenableFuture.addCallback(new ListenableFutureCallback<SendResult<String, KafkaMessage>>() {
 
-			@Override
-			public void onSuccess(SendResult<String, KafkaMessage> result) {
-				System.out.println("Message Send: " + message + "    Offset:" + result.getRecordMetadata().offset());
-			}
-
-			@Override
-			public void onFailure(Throwable ex) {
-				System.out.println("Message falied: " + message);
-			}
-
-		});
+		CompletableFuture<SendResult<String, KafkaMessage>> completableFuture =  kafkaTemplate.send("topic2", "data", kMessage);
+		try {
+			var result = completableFuture.get();
+			System.out.println("Message Send: " + message + "    Offset:" + result.getRecordMetadata().offset());
+		} catch(Exception ex) {
+			System.out.println("Message failed: " + message);
+		}
 		return "message posted";
 	}
 	

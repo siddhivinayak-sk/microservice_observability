@@ -92,7 +92,7 @@ public class KafkaConfig {
 		});
 	}
 	
-	public void stringListener(@Payload String message, @Header(KafkaHeaders.RECEIVED_PARTITION_ID) Integer partition) {
+	public void stringListener(@Payload String message, @Header(KafkaHeaders.RECEIVED_PARTITION) Integer partition) {
 		System.out.println(message);
 	}
 

@@ -1,3 +1,4 @@
+# Kafka on Windows
 ## Prerequsite for Kafka
 - OS - Windows or Linux
 - Java 11 (perfer JDK)
@@ -59,3 +60,15 @@ Where --topic specifies topic name and --bootstarp-server specifies the kafka br
 ### 4. Send message & verify on consumer
 Now all setup completed. Type a message 'hello' on kafka-console-producer. It will start reflecting into kafka-console-consumer.
 The messages can be discovered from kafdrop web UI as well.
+
+
+# Kafka in Docker
+
+Run command:
+
+```shell
+docker run -d --name=kafka -p 9092:9092 apache/kafka
+```
+
+#### References
+- https://docs.docker.com/guides/kafka/
