@@ -72,3 +72,5 @@ docker run -d --name=kafka -p 9092:9092 apache/kafka
 
 #### References
 - https://docs.docker.com/guides/kafka/
+- https://spring.io/blog/2022/10/12/observability-with-spring-boot-3
+- https://spring.io/blog/2024/10/28/lets-use-opentelemetry-with-spring
